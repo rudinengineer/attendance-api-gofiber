@@ -36,7 +36,7 @@ Full API documentation can be found here:
 1. Build and run using Docker:
 
    ```bash
-   sudo docker compose up -d --build
+   docker compose up -d
    ```
 
 1. The API will be accessible at:

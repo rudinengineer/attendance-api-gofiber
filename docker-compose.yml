@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: "attendance-api-gofiber"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./:/usr/src/attendance-api-gofiber"
+    command: "air cmd/main.go -b 0.0.0.0"
+  db:
+    image: mysql
+    restart: always
+    container_name: attendance_db
+    environment:
+      MYSQL_ROOT_PASSWORD: Password123
+      MYSQL_USER: password
+      MYSQL_PASSWORD: Password123
+      MYSQL_DATABASE: attendance
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

@@ -36,6 +36,7 @@ Full API documentation can be found here:
 1. Build and run using Docker:
 
    ```bash
+   docker network create attendance-net
    docker compose up -d
    ```
 

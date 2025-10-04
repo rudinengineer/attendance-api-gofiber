@@ -1,7 +1,7 @@
 version: "3.9"
 
 services:
-  app:
+  attendance-api:
     build: .
     container_name: "attendance-api-gofiber"
     env_file:
@@ -13,6 +13,8 @@ services:
     volumes:
       - "./:/usr/src/attendance-api-gofiber"
     command: "air cmd/main.go -b 0.0.0.0"
+    networks:
+      - attendance-net
   db:
     image: mysql
     restart: always
@@ -26,6 +28,12 @@ services:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    networks:
+      - attendance-net
 
 volumes:
   db_data:
+  
+networks:
+  attendance-net:
+    driver: bridge
